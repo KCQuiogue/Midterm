@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>APPINTR Midterm</title>
+</h:head>
+<h:body>
+    <h1>Term Report Card</h1>
+    <h:form>
+        <fieldset>
+            <legend>Input Course Details: </legend>
+            <table>
+                <tr>
+                    <td><h:outputLabel for="course" value="Course Code:" /></td>
+                    <td> <h:inputText id="course" value="#{termReport.termGrade.course}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="units" value="Number of Units:" /></td>
+                    <td><h:inputText id="units" value="#{termReport.termGrade.units}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="grade" value="Term Grade:" /></td>
+                    <td>
+                        <h:selectOneMenu id="grade" value="#{termReport.termGrade.grade}">
+                            <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
+                            <f:selectItem itemValue="0.0" itemLabel="R" />
+                            <f:selectItem itemValue="1.0" itemLabel="1.0" />
+                            <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                            <f:selectItem itemValue="2.0" itemLabel="2.0" />
+                            <f:selectItem itemValue="2.5" itemLabel="2.5" />
+                            <f:selectItem itemValue="3.0" itemLabel="3.0" />
+                            <f:selectItem itemValue="3.5" itemLabel="3.5" />
+                            <f:selectItem itemValue="4.0" itemLabel="4.0" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:commandButton value="Add" action="#{termReport.add()}">
+                            <f:ajax execute="@form" render=":table" />
+                        </h:commandButton>
+                    </td>
+                    <td>
+                        <h:commandButton value="Calculate" action="#{termReport.calc()}" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </h:form>
+    <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
+        <h:column>
+            <f:facet name="header">Course Code</f:facet>
+            <h:outputText value="#{termGrade.course}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Course Units</f:facet>
+            <h:outputText value="#{termGrade.units}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Term Grade</f:facet>
+            <h:outputText value="#{termGrade.grade}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Grade Point</f:facet>
+            <h:outputText value="#{termGrade.gradePoint}" />
+        </h:column>
+    </h:dataTable>
+    <br/>
+    <h:outputLabel for="totalUnits">Total Units: </h:outputLabel>
+    <h:outputText id="totalUnits" value="#{termReport.totalUnits}" />
+    <br />
+    <h:outputLabel for="totalGP">Total Grade Points: </h:outputLabel>
+    <h:outputText id="totalGP" value="#{termReport.totalGP}" />
+    <br />
+    <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
+    <h:outputText id="termGPA" value="#{termReport.termGPA}" />
+</h:body>
+</html>
