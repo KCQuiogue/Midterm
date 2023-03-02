@@ -6,12 +6,14 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
 @Named @RequestScoped
 public class TermReport {
     private final TermGrade termGrade = new TermGrade();
+    @Size(min=1, max=8)
     private List<TermGrade> termGrades;
     private Double totalUnits;
     private Double totalGP;
@@ -23,6 +25,7 @@ public class TermReport {
     public void init() {
         termGrades = termGradeService.list();
     }
+
     public void add() {
         termGradeService.create(termGrade);
         termGrades.add(termGrade);
@@ -41,4 +44,5 @@ public class TermReport {
     public Double getTotalGP() { return totalGP; }
 
     public Double getTermGPA() { return termGPA; }
+
 }

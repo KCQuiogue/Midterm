@@ -17,19 +17,19 @@ public class TermGradeService {
     public List<TermGrade> list() {
         return entityManager
                 .createQuery("SELECT g from TermGrade g", TermGrade.class)
+                .setMaxResults(8)
                 .getResultList();
     }
 
     public Double getTotalGP() {
         return entityManager
-                .createQuery("SELECT SUM(gradePoint) FROM TermGrade", Double.class)
+                .createQuery("SELECT SUM(gradePoint) FROM TermGrade WHERE id < 9", Double.class)
                 .getSingleResult();
     }
 
     public Double getTotalUnits() {
         return entityManager
-                .createQuery("SELECT SUM(units) FROM TermGrade WHERE grade > 0", Double.class)
+                .createQuery("SELECT SUM(units) FROM TermGrade WHERE grade > 0 AND id < 9", Double.class)
                 .getSingleResult();
     }
-
 }

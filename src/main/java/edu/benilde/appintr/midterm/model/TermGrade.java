@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 @Entity
 public class TermGrade implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final int serialVersionUID = 1;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(nullable = false)
     @Lob
     private @NotNull String course;
@@ -26,11 +26,11 @@ public class TermGrade implements Serializable {
         gradePoint = units * grade;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

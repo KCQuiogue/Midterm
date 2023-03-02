@@ -13,16 +13,23 @@
             <table>
                 <tr>
                     <td><h:outputLabel for="course" value="Course Code:" /></td>
-                    <td> <h:inputText id="course" value="#{termReport.termGrade.course}" /></td>
+                    <td>
+                        <h:inputText id="course" value="#{termReport.termGrade.course}"
+                                    required="true" requiredMessage="This field is required" />
+                    </td>
                 </tr>
                 <tr>
                     <td><h:outputLabel for="units" value="Number of Units:" /></td>
-                    <td><h:inputText id="units" value="#{termReport.termGrade.units}" /></td>
+                    <td>
+                        <h:inputText id="units" value="#{termReport.termGrade.units}"
+                                     required="true" requiredMessage="This field is required" />
+                    </td>
                 </tr>
                 <tr>
                     <td><h:outputLabel for="grade" value="Term Grade:" /></td>
                     <td>
-                        <h:selectOneMenu id="grade" value="#{termReport.termGrade.grade}">
+                        <h:selectOneMenu id="grade" value="#{termReport.termGrade.grade}"
+                                         required="true" requiredMessage="This field is required">
                             <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
                             <f:selectItem itemValue="0.0" itemLabel="R" />
                             <f:selectItem itemValue="1.0" itemLabel="1.0" />
@@ -49,6 +56,9 @@
         </fieldset>
     </h:form>
     <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
+        <h:column>
+            <h:outputText value="#{termGrade.id}" />
+        </h:column>
         <h:column>
             <f:facet name="header">Course Code</f:facet>
             <h:outputText value="#{termGrade.course}" />
