@@ -44,8 +44,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <h:commandButton value="Add" action="#{termReport.add()}">
-                            <f:ajax execute="@form" render=":table" />
+                        <h:commandButton value="Add" >
+                            <f:actionListener binding="#{termReport.check()}" />
+                            <f:actionListener binding="#{termReport.add()}">
+                                <f:ajax execute="@form" render=":table" />
+                            </f:actionListener>
                         </h:commandButton>
                     </td>
                     <td>
@@ -55,6 +58,7 @@
             </table>
         </fieldset>
     </h:form>
+    <h:outputText value="#{termReport.count}" />
     <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
         <h:column>
             <h:outputText value="#{termGrade.id}" />

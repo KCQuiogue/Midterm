@@ -32,4 +32,10 @@ public class TermGradeService {
                 .createQuery("SELECT SUM(units) FROM TermGrade WHERE grade > 0 AND id < 9", Double.class)
                 .getSingleResult();
     }
+
+    public Long countEntries() {
+        return entityManager
+                .createQuery("SELECT COUNT(g.course) FROM TermGrade g", Long.class)
+                .getSingleResult();
+    }
 }

@@ -42,9 +42,7 @@ public class TermGrade implements Serializable {
         this.course = course;
     }
 
-    public Double getUnits() {
-        return units;
-    }
+    public Double getUnits() { return units; }
 
     public void setUnits(Double units) {
         this.units = units;

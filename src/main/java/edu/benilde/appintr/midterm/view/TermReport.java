@@ -13,11 +13,17 @@ import java.util.List;
 @Named @RequestScoped
 public class TermReport {
     private final TermGrade termGrade = new TermGrade();
-    @Size(min=1, max=8)
+    @Size( max = 7 )
     private List<TermGrade> termGrades;
     private Double totalUnits;
     private Double totalGP;
     private Double termGPA;
+
+    private Long count;
+
+    public TermReport() {
+        count = 0L;
+    }
 
     @Inject
     private TermGradeService termGradeService;
@@ -26,9 +32,14 @@ public class TermReport {
         termGrades = termGradeService.list();
     }
 
+    public void check() {
+        count = termGradeService.countEntries();
+    }
     public void add() {
-        termGradeService.create(termGrade);
-        termGrades.add(termGrade);
+        if ( count < 8L) {
+            termGradeService.create(termGrade);
+            termGrades.add(termGrade);
+        }
     }
     public TermGrade getTermGrade() { return termGrade; }
     public List<TermGrade> getTermGrades() { return termGrades; }
@@ -45,4 +56,5 @@ public class TermReport {
 
     public Double getTermGPA() { return termGPA; }
 
+    public Long getCount() { return count; }
 }
