@@ -20,8 +20,11 @@ public class TermReport {
     private Double termGPA;
     private Long count;
 
+    private Boolean isMaxed;
+
     public TermReport() {
         count = 0L;
+        setMaxed(false);
     }
 
     @Inject
@@ -33,9 +36,10 @@ public class TermReport {
 
     public void check() {
         count = termGradeService.countEntries();
+        if (count > 7L) setMaxed(true);
     }
     public void add() {
-        if ( count < 8L) {
+        if ( !isMaxed ) {
             termGradeService.create(termGrade);
             termGrades.add(termGrade);
         }
@@ -61,4 +65,12 @@ public class TermReport {
     public void setTotalGP(Double totalGP) { this.totalGP = totalGP; }
 
     public void setTermGPA(Double termGPA) { this.termGPA = termGPA; }
+
+    public Boolean getMaxed() {
+        return isMaxed;
+    }
+
+    public void setMaxed(Boolean maxed) {
+        isMaxed = maxed;
+    }
 }

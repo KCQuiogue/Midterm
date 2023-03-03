@@ -7,9 +7,10 @@
 </h:head>
 <h:body>
     <h1>Term Report Card</h1>
-    <h:form>
+    <h:form onsubmit="#{termReport.check()}">
         <fieldset>
             <legend>Input Course Details: </legend>
+            <h:message for="units" />
             <table>
                 <tr>
                     <td><h:outputLabel for="course" value="Course Code:" /></td>
@@ -22,7 +23,7 @@
                     <td><h:outputLabel for="units" value="Number of Units:" /></td>
                     <td>
                         <h:inputText id="units" value="#{termReport.termGrade.units}"
-                                     required="true" requiredMessage="This field is required" />
+                                     required="true" requiredMessage="This field is required" label="Number of units: "/>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <h:commandButton value="Add" >
+                        <h:commandButton value="Add" disabled="#{termReport.maxed}">
                             <f:actionListener binding="#{termReport.check()}" />
                             <f:actionListener binding="#{termReport.add()}">
                                 <f:ajax execute="@form" render=":table" />
@@ -52,11 +53,7 @@
                         </h:commandButton>
                     </td>
                     <td>
-                        <button>
-                            <h:commandLink value="Calculate" action="output.xhtml" >
-                                <f:actionListener binding="#{termReport.compute()}" />
-                            </h:commandLink>
-                        </button>
+                        <h:commandButton value="Calculate" action="#{termReport.compute()}" />
                     </td>
                 </tr>
             </table>
@@ -75,6 +72,19 @@
             <f:facet name="header">Term Grade</f:facet>
             <h:outputText value="#{termGrade.grade}" />
         </h:column>
+        <h:column>
+            <f:facet name="header">Grade Point</f:facet>
+            <h:outputText value="#{termGrade.gradePoint}" />
+        </h:column>
     </h:dataTable>
+    <br/>
+    <h:outputLabel for="totalUnits">Total Units: </h:outputLabel>
+    <h:outputText id="totalUnits" value="#{termReport.totalUnits}" />
+    <br />
+    <h:outputLabel for="totalGP">Total Grade Points: </h:outputLabel>
+    <h:outputText id="totalGP" value="#{termReport.totalGP}" />
+    <br />
+    <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
+    <h:outputText id="termGPA" value="#{termReport.termGPA}" />
 </h:body>
 </html>
