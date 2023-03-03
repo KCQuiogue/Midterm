@@ -73,4 +73,5 @@ public class TermReport {
     public void setMaxed(Boolean maxed) {
         isMaxed = maxed;
     }
+
 }

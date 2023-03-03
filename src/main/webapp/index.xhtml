@@ -59,7 +59,8 @@
             </table>
         </fieldset>
     </h:form>
-    <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
+    <br/>
+    <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade" border="1">
         <h:column>
             <f:facet name="header">Course Code</f:facet>
             <h:outputText value="#{termGrade.course}" />
@@ -83,8 +84,9 @@
     <br />
     <h:outputLabel for="totalGP">Total Grade Points: </h:outputLabel>
     <h:outputText id="totalGP" value="#{termReport.totalGP}" />
-    <br />
-    <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
-    <h:outputText id="termGPA" value="#{termReport.termGPA}" />
+    <h3>
+        <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
+        <h:outputText id="termGPA" value="#{termReport.termGPA}" />
+    </h3>
 </h:body>
 </html>

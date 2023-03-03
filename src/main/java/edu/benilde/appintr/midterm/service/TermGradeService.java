@@ -38,4 +38,10 @@ public class TermGradeService {
                 .createQuery("SELECT COUNT(g.course) FROM TermGrade g", Long.class)
                 .getSingleResult();
     }
+
+    public int clearEntries() {
+        return entityManager
+                .createQuery("DELETE FROM TermGrade")
+                .executeUpdate();
+    }
 }
