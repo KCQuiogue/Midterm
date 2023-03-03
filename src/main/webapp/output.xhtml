@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+   <title>APPINTR Midterm</title>
+</h:head>
+<h:body>
+   <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
+      <h:column>
+         <f:facet name="header">Course Code</f:facet>
+         <h:outputText value="#{termGrade.course}" />
+      </h:column>
+      <h:column>
+         <f:facet name="header">Course Units</f:facet>
+         <h:outputText value="#{termGrade.units}" />
+      </h:column>
+      <h:column>
+         <f:facet name="header">Term Grade</f:facet>
+         <h:outputText value="#{termGrade.grade}" />
+      </h:column>
+      <h:column>
+         <f:facet name="header">Grade Point</f:facet>
+         <h:outputText value="#{termGrade.gradePoint}" />
+      </h:column>
+   </h:dataTable>
+   <br/>
+   <h:outputLabel for="totalUnits">Total Units: </h:outputLabel>
+   <h:outputText id="totalUnits" value="#{termReport.totalUnits}" />
+   <br />
+   <h:outputLabel for="totalGP">Total Grade Points: </h:outputLabel>
+   <h:outputText id="totalGP" value="#{termReport.totalGP}" />
+   <br />
+   <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
+   <h:outputText id="termGPA" value="#{termReport.termGPA}" />
+   <br />
+   <br />
+   <h:outputLink value="index.xhtml">Go Back</h:outputLink>
+</h:body>
+</html>

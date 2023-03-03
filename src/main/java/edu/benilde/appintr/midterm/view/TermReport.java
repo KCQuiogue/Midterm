@@ -18,7 +18,6 @@ public class TermReport {
     private Double totalUnits;
     private Double totalGP;
     private Double termGPA;
-
     private Long count;
 
     public TermReport() {
@@ -41,14 +40,15 @@ public class TermReport {
             termGrades.add(termGrade);
         }
     }
-    public TermGrade getTermGrade() { return termGrade; }
-    public List<TermGrade> getTermGrades() { return termGrades; }
 
-    public void calc() {
+    public void compute() {
         totalGP = termGradeService.getTotalGP();
         totalUnits = termGradeService.getTotalUnits();
         termGPA = totalGP / totalUnits;
     }
+
+    public TermGrade getTermGrade() { return termGrade; }
+    public List<TermGrade> getTermGrades() { return termGrades; }
 
     public Double getTotalUnits() { return totalUnits; }
 
@@ -56,5 +56,9 @@ public class TermReport {
 
     public Double getTermGPA() { return termGPA; }
 
-    public Long getCount() { return count; }
+    public void setTotalUnits(Double totalUnits) { this.totalUnits = totalUnits; }
+
+    public void setTotalGP(Double totalGP) { this.totalGP = totalGP; }
+
+    public void setTermGPA(Double termGPA) { this.termGPA = termGPA; }
 }

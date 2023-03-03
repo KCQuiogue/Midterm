@@ -52,17 +52,17 @@
                         </h:commandButton>
                     </td>
                     <td>
-                        <h:commandButton value="Calculate" action="#{termReport.calc()}" />
+                        <button>
+                            <h:commandLink value="Calculate" action="output.xhtml" >
+                                <f:actionListener binding="#{termReport.compute()}" />
+                            </h:commandLink>
+                        </button>
                     </td>
                 </tr>
             </table>
         </fieldset>
     </h:form>
-    <h:outputText value="#{termReport.count}" />
     <h:dataTable id="table" value="#{termReport.termGrades}" var="termGrade">
-        <h:column>
-            <h:outputText value="#{termGrade.id}" />
-        </h:column>
         <h:column>
             <f:facet name="header">Course Code</f:facet>
             <h:outputText value="#{termGrade.course}" />
@@ -75,19 +75,6 @@
             <f:facet name="header">Term Grade</f:facet>
             <h:outputText value="#{termGrade.grade}" />
         </h:column>
-        <h:column>
-            <f:facet name="header">Grade Point</f:facet>
-            <h:outputText value="#{termGrade.gradePoint}" />
-        </h:column>
     </h:dataTable>
-    <br/>
-    <h:outputLabel for="totalUnits">Total Units: </h:outputLabel>
-    <h:outputText id="totalUnits" value="#{termReport.totalUnits}" />
-    <br />
-    <h:outputLabel for="totalGP">Total Grade Points: </h:outputLabel>
-    <h:outputText id="totalGP" value="#{termReport.totalGP}" />
-    <br />
-    <h:outputLabel for="termGPA">Term GPA: </h:outputLabel>
-    <h:outputText id="termGPA" value="#{termReport.termGPA}" />
 </h:body>
 </html>
